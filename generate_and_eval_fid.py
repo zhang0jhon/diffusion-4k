@@ -190,7 +190,7 @@ def main(args):
             real_image = Image.open(f"{os.path.dirname(args.json_file)}/{file_name}").convert('RGB')
             width, height = real_image.size
 
-            # flux
+            # pipeline
             image = pipe(
                 prompt,
                 height=args.size,

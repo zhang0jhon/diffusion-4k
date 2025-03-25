@@ -2,7 +2,7 @@
 
 
 <div align="center">
-  <a href="https://arxiv.org/"><img src="https://img.shields.io/static/v1?label=Arxiv&message=Diffusion-4K&color=red&logo=arxiv"></a> &ensp;
+  <a href="https://arxiv.org/abs/2503.18352"><img src="https://img.shields.io/static/v1?label=Arxiv&message=Diffusion-4K&color=red&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/datasets/zhang0jhon/Aesthetic-4K"><img src="https://img.shields.io/static/v1?label=Dataset&message=Aesthetic-4K&color=yellow"></a> &ensp;
 </div>
 

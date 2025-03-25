@@ -1180,7 +1180,7 @@ def main(args):
             if global_step >= args.max_train_steps:
                 break
 
-    # Save the lora layers
+    # Save checkpoints
     accelerator.wait_for_everyone()
     if accelerator.is_main_process:
         transformer = unwrap_model(transformer)

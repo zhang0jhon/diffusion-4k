@@ -109,16 +109,3 @@ def main(args):
 if __name__ == "__main__":
     args = parse_args()
     main(args)
-
-
-# python eval.py --img_root /data/yizhou/VAND2.0/zjj/diffusion-4k/visualization/flux_jpg/size_2048/generate_images/q95/
-
-
-# python eval.py --img_root /data/yizhou/VAND2.0/zjj/diffusion-4k/visualization/sd3_jpg/size_2048/generate_images/q95/
-
-
-# python eval.py --img_root /data/yizhou/VAND2.0/zjj/diffusion-4k/visualization/sd3_wavelet_jpg/size_2048/generate_images/q95/
-
-
-
-# python eval.py --img_root ./evaluation/flux_wavelet_v2
