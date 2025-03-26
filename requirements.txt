@@ -7,9 +7,9 @@ annotated-types==0.7.0
 async-timeout==4.0.3
 attrs==24.2.0
 bitsandbytes==0.44.0
-Brotli @ file:///croot/brotli-split_1714483155106/work
-certifi @ file:///croot/certifi_1725551672989/work/certifi
-charset-normalizer @ file:///croot/charset-normalizer_1721748349566/work
+Brotli==1.0.9
+certifi==2024.8.30
+charset-normalizer==3.3.2
 clip==0.2.0
 contourpy==1.3.0
 cycler==0.12.1
@@ -17,19 +17,19 @@ datasets==3.0.1
 deepspeed==0.15.1
 diffusers==0.30.3
 dill==0.3.8
-filelock @ file:///croot/filelock_1700591183607/work
+filelock==3.13.1
 fonttools==4.54.1
 frozenlist==1.4.1
 fsspec==2024.6.1
 ftfy==6.3.1
-gmpy2 @ file:///tmp/build/80754af9/gmpy2_1645455533097/work
+gmpy2==2.1.2
 grpcio==1.69.0
 hjson==3.1.0
 huggingface-hub==0.25.1
-idna @ file:///croot/idna_1714398848350/work
+idna==3.7
 imageio==2.36.0
 importlib_metadata==8.5.0
-Jinja2 @ file:///croot/jinja2_1716993405101/work
+Jinja2==3.1.4
 joblib==1.4.2
 kiwisolver==1.4.7
 lazy_loader==0.4
@@ -38,13 +38,13 @@ lpips==0.1.4
 Markdown==3.7
 MarkupSafe==3.0.2
 matplotlib==3.9.2
+mkl_fft==1.3.10
+mkl_random==1.2.7
 mkl-service==2.4.0
-mkl_fft @ file:///croot/mkl_fft_1725370245198/work
-mkl_random @ file:///croot/mkl_random_1725370241878/work
-mpmath @ file:///croot/mpmath_1690848262763/work
+mpmath==1.3.0
 multidict==6.1.0
 multiprocess==0.70.16
-networkx @ file:///croot/networkx_1717597493534/work
+networkx==3.2.1
 ninja==1.11.1.1
 numpy==2.2.1
 openai-clip==1.0.1
@@ -52,7 +52,8 @@ opencv-python==4.10.0.84
 packaging==24.2
 pandas==2.2.3
 peft==0.13.1
-pillow @ file:///croot/pillow_1721059439630/work
+pillow==10.4.0
+pip==24.2
 protobuf==5.29.3
 psutil==6.0.0
 py-cpuinfo==9.0.0
@@ -60,23 +61,23 @@ pyarrow==17.0.0
 pydantic==2.9.2
 pydantic_core==2.23.4
 pyparsing==3.1.4
-PySocks @ file:///home/builder/ci_310/pysocks_1640793678128/work
+PySocks==1.7.1
 python-dateutil==2.9.0.post0
 pytorch-lightning==2.4.0
 pytorch-wavelets==1.3.0
 pytz==2024.2
 PyWavelets==1.7.0
-PyYAML @ file:///croot/pyyaml_1698096049011/work
+PyYAML==6.0.1
 regex==2024.9.11
-requests @ file:///croot/requests_1721410876868/work
+requests==2.32.3
 safetensors==0.4.5
 scikit-image==0.24.0
 scikit-learn==1.5.2
 scipy==1.14.1
 sentencepiece==0.2.0
-shadowsocks @ https://github.com/shadowsocks/shadowsocks/archive/master.zip
+setuptools==75.1.0
 six==1.16.0
-sympy @ file:///croot/sympy_1724938189289/work
+sympy==1.13.2
 tensorboard==2.18.0
 tensorboard-data-server==0.7.2
 threadpoolctl==3.5.0
@@ -91,11 +92,12 @@ torchvision==0.19.0
 tqdm==4.66.5
 transformers==4.45.1
 triton==3.0.0
-typing_extensions @ file:///croot/typing_extensions_1715268824938/work
+typing_extensions==4.11.0
 tzdata==2024.2
-urllib3 @ file:///croot/urllib3_1718912636303/work
+urllib3==2.2.2
 wcwidth==0.2.13
 Werkzeug==3.1.3
+wheel==0.44.0
 xxhash==3.5.0
 yarl==1.13.1
 zipp==3.20.2
