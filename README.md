@@ -66,7 +66,7 @@ Flux-12B-WLF checkpoint is released at [flux_wavelet](https://huggingface.co/zha
 Generate images with Flux-12B:
 
 ```
-CUDA_VISIBLE_DEVICES=0 python test_flux.py --guidance_scale 7.0 --height 4096 --width 4096 --seed 0 --num_inference_steps 50 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
+CUDA_VISIBLE_DEVICES=0 python test_flux.py --guidance_scale 5.0 --height 4096 --width 4096 --seed 0 --num_inference_steps 50 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
 ```
 
 Generate images with SD3-2B:
@@ -76,6 +76,13 @@ CUDA_VISIBLE_DEVICES=0 python test_sd3.py --guidance_scale 7.0 --height 4096 --w
 ```
 
 You can modify the paramters of height, width, guiduance scale and random seed for various images generation.
+```
+for height, width in [(4096, 4096), (4096, 3072), (3072, 4096)]: 
+  for guidance_scale in [5, 5.5, 6, 6.5, 7]: 
+    for num_inference_steps in [50, 80, 100]: 
+        for seed in range(10):
+          # generate images.
+```
 
 ## Evaluation 
 Generate images for evaluation and compute FID, CLIPScore and Aesthetics:
