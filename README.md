@@ -14,8 +14,10 @@
 
 ## Updates
 [2025/06/03] We release the updated checkpoint [flux_wavelet_v2_sc](https://huggingface.co/zhang0jhon/flux_wavelet_v2_sc) and [Aesthetic-Train-V2](https://huggingface.co/datasets/zhang0jhon/Aesthetic-Train-V2). 
+
 Please refer to our new arxiv paper [Ultra-High-Resolution Image Synthesis: Data, Method and Evaluation](https://arxiv.org/abs/2506.01331).
-The training code of SC-VAE is released at [sc-vae](https://github.com/zhang0jhon/diffusion-4k/sc-vae).
+
+The training code of SC-VAE is released at [sc-vae](https://github.com/zhang0jhon/diffusion-4k/tree/main/sc-vae).
 
 
 ## Introduction
