@@ -13,11 +13,13 @@
 
 
 ## Updates
-[2025/06/03] We release the updated checkpoint [flux_wavelet_v2_sc](https://huggingface.co/zhang0jhon/flux_wavelet_v2_sc) and [Aesthetic-Train-V2](https://huggingface.co/datasets/zhang0jhon/Aesthetic-Train-V2). 
+[2025/06/03] We release the updated checkpoint [flux_wavelet_v2_sc](https://huggingface.co/zhang0jhon/flux_wavelet_v2_sc) using SC-VAE and Aesthetic-Train-V2. 
 
-Please refer to our new arxiv paper [Ultra-High-Resolution Image Synthesis: Data, Method and Evaluation](https://arxiv.org/abs/2506.01331).
+Please refer to our new arxiv paper [Ultra-High-Resolution Image Synthesis: Data, Method and Evaluation](https://arxiv.org/abs/2506.01331) for more details.
 
 The training code of SC-VAE is released at [sc-vae](https://github.com/zhang0jhon/diffusion-4k/tree/main/sc-vae).
+
+The Aesthetic-Train-V2 training set is released at [huggingface/Aesthetic-Train-V2](https://huggingface.co/datasets/zhang0jhon/Aesthetic-Train-V2).
 
 
 ## Introduction
@@ -36,7 +38,7 @@ Consequently, Diffusion-4K achieves impressive performance in high-quality image
 
 ## Aesthetic-4K Dataset
 
-* Aesthetic-4K dataset is released at [huggingface](https://huggingface.co/datasets/zhang0jhon/Aesthetic-4K).
+* Aesthetic-4K dataset is released at [huggingface/Aesthetic-4K](https://huggingface.co/datasets/zhang0jhon/Aesthetic-4K).
 
 <p align="center" border-raduis="10px">
   <img src="asset/dataset.jpg" width="100%" alt="teaser_page2"/>
@@ -59,11 +61,11 @@ Modify the configuration in *ds_config.yaml* accordingly (*e.g.* num_processes),
 sh train_flux.sh
 ```
 
-Run the script for training SD3-2B:
+<!-- Run the script for training SD3-2B:
 
 ```
 sh train_sd3.sh
-```
+``` -->
 
 ## Checkpoint
 
@@ -76,11 +78,11 @@ Generate images with Flux-12B:
 CUDA_VISIBLE_DEVICES=0 python test_flux.py --guidance_scale 5.0 --height 3072 --width 4096 --seed 0 --num_inference_steps 50 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
 ```
 
-Generate images with SD3-2B:
+<!-- Generate images with SD3-2B:
 
 ```
 CUDA_VISIBLE_DEVICES=0 python test_sd3.py --guidance_scale 7.0 --height 3072 --width 4096 --seed 0 --num_inference_steps 28 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
-```
+``` -->
 
 <!-- You can modify the paramters of height, width, guiduance scale and random seed for various images generation.
 ```
