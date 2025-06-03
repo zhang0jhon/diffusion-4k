@@ -18,19 +18,6 @@ from diffusers.models.unets.unet_2d_blocks import (
 )
 
 import torch.nn.functional as F
-
-
-@dataclass
-class EncoderOutput(BaseOutput):
-    r"""
-    Output of encoding method.
-
-    Args:
-        latent (`torch.Tensor` of shape `(batch_size, num_channels, latent_height, latent_width)`):
-            The encoded latent.
-    """
-
-    latent: torch.Tensor
     
 
 @dataclass
@@ -44,6 +31,7 @@ class DecoderOutput(BaseOutput):
     """
 
     sample: torch.Tensor
+    immediate_layer: torch.Tensor
     commit_loss: Optional[torch.FloatTensor] = None
 
 
@@ -69,7 +57,6 @@ class Encoder(nn.Module):
             The activation function to use. See `~diffusers.models.activations.get_activation` for available options.
         double_z (`bool`, *optional*, defaults to `True`):
             Whether to double the number of output channels for the last block.
-        stride (int, *optional*, defaults to 1): stride for VAE.
     """
 
     def __init__(
@@ -208,7 +195,6 @@ class Decoder(nn.Module):
             The activation function to use. See `~diffusers.models.activations.get_activation` for available options.
         norm_type (`str`, *optional*, defaults to `"group"`):
             The normalization type to use. Can be either `"group"` or `"spatial"`.
-        stride (int, *optional*, defaults to 1): stride for VAE.
     """
 
     def __init__(
@@ -348,6 +334,7 @@ class Decoder(nn.Module):
             for up_block in self.up_blocks:
                 sample = up_block(sample, latent_embeds)
 
+        immediate_layer = None
         # partitioned VAE F16
         if self.stride > 1 and partitioned: 
             if latent_embeds is None:
@@ -356,8 +343,11 @@ class Decoder(nn.Module):
                 sample = self.conv_norm_out(sample, latent_embeds)
             sample = self.conv_act(sample)
 
+            immediate_layer = sample
+
             overlap_size = 1 # because last conv kernel_size = 3
             res = []
+            # immediate_layer = []
             partitioned_height = sample.shape[2] // self.stride
             partitioned_width = sample.shape[3] // self.stride
 
@@ -368,8 +358,10 @@ class Decoder(nn.Module):
 
             assert self.stride == 2 # only support stride = 2 for now
             rows = []
+            # immediate_rows = []
             for i in range(0, sample.shape[2], partitioned_height):
                 row = []
+                # immediate_row = []
                 for j in range(0, sample.shape[3], partitioned_width):
                     partition = sample[:,:, max(i - overlap_size, 0) : min(i + partitioned_height + overlap_size, sample.shape[2]), max(j - overlap_size, 0) : min(j + partitioned_width + overlap_size, sample.shape[3])]
                     
@@ -384,6 +376,7 @@ class Decoder(nn.Module):
                         partition = F.pad(partition, (0, 1, 0, 1), "constant", 0) 
 
                     partition = F.interpolate(partition, scale_factor=self.stride, mode='nearest')
+                    # immediate_row.append(partition[:,:,overlap_size:partitioned_height*2+overlap_size,overlap_size:partitioned_width*2+overlap_size])
                     partition = self.conv_out(partition)
                     partition = partition[:,:,overlap_size:partitioned_height*2+overlap_size,overlap_size:partitioned_width*2+overlap_size]
 
@@ -411,9 +404,15 @@ class Decoder(nn.Module):
 
                     row.append(partition)
                 rows.append(row)
+                # immediate_rows.append(immediate_row)
 
             for row in rows:
                 res.append(torch.cat(row, dim=3))
+            
+            # for immediate_row in immediate_rows:
+            #     immediate_layer.append(torch.cat(immediate_row, dim=3))
+
+            # immediate_layer = torch.cat(immediate_layer, dim=2)
             
             sample = torch.cat(res, dim=2)
 
@@ -430,6 +429,7 @@ class Decoder(nn.Module):
             # sample = F.interpolate(sample, scale_factor=self.stride, mode='bicubic')
 
             sample = self.conv_act(sample)
+            immediate_layer = sample
             sample = self.conv_out(sample)
         
         # F8 VAE
@@ -439,9 +439,10 @@ class Decoder(nn.Module):
             else:
                 sample = self.conv_norm_out(sample, latent_embeds)
             sample = self.conv_act(sample)
+            immediate_layer = sample
             sample = self.conv_out(sample)
-
-        return sample
+        
+        return immediate_layer, sample
 
 
 class UpSample(nn.Module):

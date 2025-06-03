@@ -12,6 +12,11 @@
 </p>
 
 
+## Updates
+[2025/06/03] We release the updated checkpoint [flux_wavelet_v2_sc](https://huggingface.co/zhang0jhon/flux_wavelet_v2_sc) and [Aesthetic-Train-V2](https://huggingface.co/datasets/zhang0jhon/Aesthetic-Train-V2). 
+Please refer to our new arxiv paper [Ultra-High-Resolution Image Synthesis: Data, Method and Evaluation](https://arxiv.org/abs/2506.01331).
+The training code of SC-VAE is released at [sc-vae](https://github.com/zhang0jhon/diffusion-4k/sc-vae).
+
 
 ## Introduction
 
@@ -66,23 +71,26 @@ Flux-12B-WLF checkpoint is released at [flux_wavelet](https://huggingface.co/zha
 Generate images with Flux-12B:
 
 ```
-CUDA_VISIBLE_DEVICES=0 python test_flux.py --guidance_scale 5.0 --height 4096 --width 4096 --seed 0 --num_inference_steps 50 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
+CUDA_VISIBLE_DEVICES=0 python test_flux.py --guidance_scale 5.0 --height 3072 --width 4096 --seed 0 --num_inference_steps 50 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
 ```
 
 Generate images with SD3-2B:
 
 ```
-CUDA_VISIBLE_DEVICES=0 python test_sd3.py --guidance_scale 7.0 --height 4096 --width 4096 --seed 0 --num_inference_steps 28 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
+CUDA_VISIBLE_DEVICES=0 python test_sd3.py --guidance_scale 7.0 --height 3072 --width 4096 --seed 0 --num_inference_steps 28 --checkpoint_path $CHECKPOINT_PATH --prompt $PROMPT
 ```
 
-You can modify the paramters of height, width, guiduance scale and random seed for various images generation.
+<!-- You can modify the paramters of height, width, guiduance scale and random seed for various images generation.
 ```
 for height, width in [(4096, 4096), (4096, 3072), (3072, 4096)]: 
   for guidance_scale in [5, 5.5, 6, 6.5, 7]: 
     for num_inference_steps in [50, 80, 100]: 
         for seed in range(10):
           # generate images.
-```
+``` -->
+
+## Tips
+For 4K image generation, it is recommended to generate at the resolution of (4096, 3072) or (3072, 4096) with guidance scale of 5 or 5.5.
 
 ## Evaluation 
 Generate images for evaluation and compute FID, CLIPScore and Aesthetics:
@@ -114,8 +122,15 @@ If you find our paper or dataset is helpful in your research or applications, ge
 ```
 @inproceedings{zhang2025diffusion4k,
     title={Diffusion-4K: Ultra-High-Resolution Image Synthesis with Latent Diffusion Models},
-    author={Jinjin Zhang, Qiuyu Huang, Junjie Liu, Xiefan Guo and Di Huang},
+    author={Zhang, Jinjin and Huang, Qiuyu and Liu, Junjie and Guo, Xiefan and Huang, Di},
     year={2025},
     booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+}
+
+@misc{zhang2025ultrahighresolutionimagesynthesis,
+    title={Ultra-High-Resolution Image Synthesis: Data, Method and Evaluation},
+    author={Zhang, Jinjin and Huang, Qiuyu and Liu, Junjie and Guo, Xiefan and Huang, Di},
+    year={2025},
+    note={arXiv:2506.01331},
 }
 ```
